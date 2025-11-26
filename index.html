@@ -4,183 +4,74 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Faith Gates — Stage Manager</title>
-  <meta name="description" content="Your Name — professional stage manager. Resume, portfolio, and production photo gallery." />
+  <meta name="description" content="Faith Gates — Stage Manager. Resume, portfolio, production photo gallery, and contact." />
   <style>
-    /* Simple, modern responsive style */
+    /* ----- Colors & variables ----- */
     :root{
-      --accent:#2a6f9e;
-      --bg:#f8f8f9;
-      --card:#ffffff;
-      --muted:#666;
-      --maxw:1100px;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      --burgundy: #7a0f17; /* main burgundy accent/background */
+      --bg: #f6f5f4;
+      --panel: #ffffff;
+      --muted: #666666;
+      --maxw: 1100px;
+      --radius: 10px;
+      --shadow: 0 6px 20px rgba(15,15,15,0.06);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
+
+    /* ----- Global reset ----- */
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:#111;line-height:1.45}
-    .site{max-width:var(--maxw);margin:0 auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
-    .branding{display:flex;align-items:center;gap:12px}
-    .logo{width:64px;height:64px;border-radius:8px;background:#ddd;display:flex;align-items:center;justify-content:center;font-weight:700}
-    nav a{margin-left:12px;text-decoration:none;color:var(--muted);font-weight:600}
-    nav a.active{color:var(--accent)}
-    .hero{display:flex;flex-wrap:wrap;gap:20px;align-items:center;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.6));padding:20px;border-radius:12px}
-    .hero .left{flex:1;min-width:260px}
-    .hero h1{margin:0 0 6px 0;font-size:28px}
-    .hero p{margin:0;color:var(--muted)}
-    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;margin-top:12px}
-    section{margin-top:22px}
-    .grid{display:grid;gap:14px}
-    .two{grid-template-columns:1fr 300px}
-    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 2px 6px rgba(20,20,20,.04)}
-    /* Resume / portfolio list */
-    .pdf-list a{display:block;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px;text-decoration:none;color:#111}
-    /* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
-    .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px;cursor:pointer}
-    footer{margin-top:24px;text-align:center;color:var(--muted);font-size:14px}
-    /* modal */
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px}
-    .modal.open{display:flex}
-    .modal img{max-width:95%;max-height:85%;border-radius:8px}
-    /* responsive */
-    @media (max-width:800px){
-      .two{grid-template-columns:1fr}
-      .hero{flex-direction:column;align-items:flex-start}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,var(--bg) 0%, #efecec 100%);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
     }
-  </style>
-</head>
-<body>
-  <div class="site">
-    <header>
-      <div class="branding">
-        <div class="logo" aria-hidden="true">YN</div>
-        <div>
-          <div style="font-weight:700">Faith Gates</div>
-          <div style="color:var(--muted);font-size:13px">Stage Manager & Production Personnel</div>
-        </div>
-      </div>
-      <nav aria-label="Main navigation">
-        <a href="#home" class="active">Home</a>
-        <a href="#resume">Resume</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#gallery">Photo Gallery</a>
-        <a href="#about">About</a>
-      </nav>
-    </header>
 
-    <main>
-      <section id="home" class="hero card">
-        <div class="left">
-          <h1>Faith Gates — Stage Manager</h1>
-          <p>Production stage manager with experience in musical theatre, opera, and educational touring productions. Based in City, State. (Replace with your short intro)</p>
-          <a class="btn" href="#resume" id="viewResumeBtn">View Resume (PDF)</a>
-          <a class="btn" style="background:#555;margin-left:8px" href="#portfolio">Portfolio</a>
-        </div>
-        <div style="width:220px">
-          <!-- Replace the image src with a professional headshot: assets/images/headshot.jpg -->
-          <img src="assets/images/headshot-placeholder.jpg" alt="Headshot of Your Name" style="width:100%;border-radius:8px">
-        </div>
-      </section>
+    /* ----- Layout container ----- */
+    .wrap{
+      max-width:var(--maxw);
+      margin:28px auto;
+      padding:26px;
+    }
 
-      <section id="resume" class="two">
-        <div class="card">
-          <h2>Resume</h2>
-          <p class="muted" style="color:var(--muted)">Download or view my current resume and selected paperwork below.</p>
-          <div class="pdf-list">
-            <!-- Put your resume(s) into assets/pdfs/ and update hrefs -->
-            <a href="assets/pdfs/Resume-YourName.pdf" target="_blank" rel="noopener">Resume — YourName (PDF)</a>
-            <a href="assets/pdfs/Production_Report_Example.pdf" target="_blank" rel="noopener">Sample Production Report (PDF)</a>
-            <a href="assets/pdfs/Prompt-Script.pdf" target="_blank" rel="noopener">Prompt Script (sample)</a>
-          </div>
-          <p style="color:var(--muted);font-size:13px">Tip: Upload PDFs in `assets/pdfs/` and link them here.</p>
-        </div>
+    /* ----- Header / nav ----- */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:20px;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:64px;height:64px;border-radius:12px;
+      background:var(--panel);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:var(--burgundy);
+      box-shadow:var(--shadow);
+      font-size:20px;
+    }
+    .site-title{font-weight:700}
+    nav a{
+      margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600;
+    }
+    nav a.active{color:var(--burgundy);}
 
-        <aside class="card">
-          <h3>Contact</h3>
-          <p style="margin:6px 0">Your Name<br/>
-            <a href="mailto:youremail@example.com">youremail@example.com</a><br/>
-            (123) 456-7890
-          </p>
-          <p style="margin-top:12px;color:var(--muted);font-size:13px">Socials: add links to LinkedIn / Instagram if you use them professionally.</p>
-        </aside>
-      </section>
-
-      <section id="portfolio" class="card">
-        <h2>Portfolio</h2>
-        <p style="color:var(--muted)">Brief notes and paperwork: click to open PDFs in new tab.</p>
-        <div class="pdf-list" style="margin-top:10px">
-          <!-- Add more links to paperwork PDFs -->
-          <a href="assets/pdfs/Tech-Rider.pdf" target="_blank" rel="noopener">Tech Rider — Production A</a>
-          <a href="assets/pdfs/Cue-Sheet.pdf" target="_blank" rel="noopener">Cue Sheet — Production B</a>
-        </div>
-      </section>
-
-      <section id="gallery" class="card">
-        <h2>Production Photo Gallery</h2>
-        <p style="color:var(--muted)">Click any image to view larger.</p>
-        <div class="gallery" id="galleryGrid">
-          <!-- Replace with real image files in assets/images/ -->
-          <img src="assets/images/photo1.jpg" alt="Production photo 1" data-full="assets/images/photo1-large.jpg">
-          <img src="assets/images/photo2.jpg" alt="Production photo 2" data-full="assets/images/photo2-large.jpg">
-          <img src="assets/images/photo3.jpg" alt="Production photo 3" data-full="assets/images/photo3-large.jpg">
-          <img src="assets/images/photo4.jpg" alt="Production photo 4" data-full="assets/images/photo4-large.jpg">
-        </div>
-      </section>
-
-      <section id="about" class="card">
-        <h2>About Me</h2>
-        <p>I’m a stage manager who specializes in [x]. I have experience with [list: musicals, opera, dance, educational touring]. Replace this paragraph with a 3–6 sentence professional bio: training, notable credits, and how you work (e.g., calm under tech pressure, strong paperwork skills).</p>
-        <p style="color:var(--muted)">Tip: keep the bio brief and link to your resume for a full credit list.</p>
-      </section>
-    </main>
-
-    <footer>
-      <div style="margin-top:18px">© <span id="year"></span> Your Name — Stage Manager</div>
-    </footer>
-  </div>
-
-  <!-- Modal for gallery images -->
-  <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-label="Image preview">
-    <img id="modalImg" src="" alt="">
-  </div>
-
-  <script>
-    // small JS: nav highlighting, gallery modal, year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // smooth in-page nav: highlight clicked links
-    document.querySelectorAll('nav a').forEach(a=>{
-      a.addEventListener('click', e=>{
-        document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-      });
-    });
-
-    // gallery modal
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    document.getElementById('galleryGrid').addEventListener('click', (e)=>{
-      const img = e.target.closest('img');
-      if(!img) return;
-      const full = img.dataset.full || img.src;
-      modalImg.src = full;
-      modalImg.alt = img.alt || '';
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
-    });
-    modal.addEventListener('click', ()=> {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-      modalImg.src = '';
-    });
-    // keyboard close
-    window.addEventListener('keydown', (e)=> {
-      if(e.key === 'Escape' && modal.classList.contains('open')) {
-        modal.classList.remove('open');
-        modalImg.src='';
-      }
-    });
-  </script>
-</body>
-</html>
-
+    /* ----- Hero ----- */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 300px;
+      gap:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.85));
+      padding:26px;border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      align-items:center;
+    }
+    .hero h1{margin:
