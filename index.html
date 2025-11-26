@@ -1,301 +1,240 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Faith Gates — Stage Manager</title>
-  <meta name="description" content="Faith Gates — Stage Manager. Resume, portfolio, production photo gallery, and contact." />
+
   <style>
-    /* ----- Colors & variables ----- */
     :root{
-      --burgundy: #7a0f17; /* main burgundy accent/background */
-      --bg: #f6f5f4;
+      --burgundy: #7a0f17;
       --panel: #ffffff;
-      --muted: #666666;
-      --maxw: 1100px;
-      --radius: 10px;
-      --shadow: 0 6px 20px rgba(15,15,15,0.06);
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --muted: #666;
+      --radius: 12px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.08);
+      font-family: Inter, system-ui, sans-serif;
     }
 
-    /* ----- Global reset ----- */
-    *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      background: linear-gradient(180deg,var(--bg) 0%, #efecec 100%);
+      background:#f6f5f4;
       color:#111;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
     }
 
-    /* ----- Layout container ----- */
-    .wrap{
-      max-width:var(--maxw);
-      margin:28px auto;
-      padding:26px;
-    }
-
-    /* ----- Header / nav ----- */
+    /* NAVIGATION */
     header{
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap:24px;
-      margin-bottom:20px;
+      align-items:center;
+      padding:20px 40px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      position:sticky;
+      top:0;
+      z-index:50;
     }
     .brand{
       display:flex;
-      gap:14px;
       align-items:center;
+      gap:12px;
     }
     .logo{
-      width:64px;height:64px;border-radius:12px;
+      width:55px;
+      height:55px;
+      border-radius:12px;
       background:var(--panel);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:700;color:var(--burgundy);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:700;
+      color:var(--burgundy);
       box-shadow:var(--shadow);
-      font-size:20px;
     }
-    .site-title{font-weight:700}
     nav a{
-      margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600;
+      margin-left:20px;
+      text-decoration:none;
+      color:var(--muted);
+      font-size:17px;
+      font-weight:600;
     }
     nav a.active{color:var(--burgundy);}
 
-    /* ----- Hero ----- */
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:20px;
+    }
+
+    /* HERO */
     .hero{
-      display:grid;
-      grid-template-columns: 1fr 300px;
-      gap:22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.85));
-      padding:26px;border-radius:var(--radius);
-      box-shadow:var(--shadow);
+      display:flex;
+      justify-content:space-between;
       align-items:center;
-    }
-    .hero h1{margin:0;font-size:32px;letter-spacing:-0.5px}
-    .hero p{margin:8px 0;color:var(--muted);max-width:62ch}
-    .hero .btn-row{margin-top:12px}
-    .btn{
-      display:inline-block;padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none;margin-right:10px;
-    }
-    .btn-primary{background:var(--burgundy);color:#fff}
-    .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.08);color:var(--muted)}
-
-    .headshot{
-      width:100%;height:100%;max-width:300px;border-radius:12px;object-fit:cover;display:block;
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      padding:70px 40px;
+      background:var(--burgundy);
+      color:white;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin-top:25px;
     }
 
-    /* ----- Sections grid ----- */
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 320px;
-      gap:18px;
-      margin-top:20px;
+    .hero h1{
+      font-size:60px;
+      margin:0;
+      letter-spacing:2px;
+    }
+    .hero h2{
+      font-size:28px;
+      margin-top:10px;
+      font-weight:300;
     }
 
-    .panel{
-      background:var(--panel);
-      padding:18px;border-radius:12px;box-shadow:var(--shadow);
+    .hero img{
+      width:360px;
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      object-fit:cover;
     }
-    .pdf-list a{display:block;padding:10px;border-radius:8px;border:1px solid #f0f0f0;margin-bottom:10px;text-decoration:none;color:#111}
-    .muted{color:var(--muted)}
 
-    /* ----- Portfolio / gallery ----- */
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:12px;
-      margin-top:8px;
+    /* ABOUT */
+    #about{
+      background:white;
+      margin-top:30px;
+      padding:35px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
-    .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px;cursor:pointer}
-
-    /* ----- About block ----- */
-    .about p{margin-top:6px;color:var(--muted)}
-
-    /* ----- Contact form (static) ----- */
-    .contact form{display:flex;flex-direction:column;gap:8px}
-    .contact input,.contact textarea{padding:10px;border:1px solid #eee;border-radius:8px;font-size:14px}
-    .contact button{padding:10px;border-radius:8px;border:0;background:var(--burgundy);color:#fff;font-weight:700}
-
-    /* ----- Footer ----- */
-    footer{text-align:center;margin-top:18px;color:var(--muted);font-size:14px}
-
-    /* ----- Modal ----- */
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:18px;z-index:60}
-    .modal.open{display:flex}
-    .modal img{max-width:96%;max-height:90%;border-radius:8px}
-
-    /* ----- Responsive ----- */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      nav a{margin-left:10px}
+    #about h2{
+      font-size:32px;
+      margin-top:0;
     }
-    @media (max-width:480px){
-      body{padding:10px}
-      .logo{width:52px;height:52px}
-      .hero h1{font-size:24px}
-      .gallery img{height:100px}
+    #about p{
+      font-size:18px;
+      line-height:1.7;
+      max-width:900px;
+      color:var(--muted);
+    }
+
+    /* CAROUSEL */
+    .carousel-container{
+      margin-top:35px;
+      background:white;
+      padding:35px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .carousel-container h2{
+      margin-top:0;
+      font-size:30px;
+    }
+
+    .carousel{
+      display:flex;
+      overflow-x:auto;
+      gap:20px;
+      scroll-behavior:smooth;
+      padding-bottom:10px;
+    }
+    .carousel img{
+      height:220px;
+      border-radius:10px;
+      flex-shrink:0;
+      object-fit:cover;
+      box-shadow:var(--shadow);
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      margin:40px 0 20px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media(max-width:900px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+      .hero img{
+        margin-top:25px;
+        width:80%;
+        max-width:330px;
+      }
+      .hero h1{font-size:46px;}
     }
   </style>
 </head>
+
 <body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <div class="brand">
+      <div class="logo">FG</div>
+      <div>
+        <strong>Faith Gates</strong><br>
+        <span class="muted" style="font-size:13px;color:gray;">Stage Manager</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="gallery.html">Gallery</a>
+    </nav>
+  </header>
+
+
   <div class="wrap">
-    <!-- Header -->
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true">FG</div>
-        <div>
-          <div class="site-title">Faith Gates</div>
-          <div class="muted" style="font-size:13px">Stage Manager & Production Personnel</div>
-        </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div>
+        <h1>FAITH GATES</h1>
+        <h2>Stage Manager</h2>
       </div>
 
-      <nav aria-label="Main navigation">
-        <a href="#home" class="active">Home</a>
-        <a href="#resume">Resume</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#gallery">Photo Gallery</a>
-        <a href="#about">About</a>
-      </nav>
-    </header>
+      <!-- Replace with your own image -->
+      <img src="assets/images/headshot.jpg" alt="Faith Gates Headshot">
+    </section>
 
-    <!-- Hero -->
-    <main id="home">
-      <section class="hero" style="background: linear-gradient(180deg, rgba(122,15,23,0.05), rgba(255,255,255,0.85));">
-        <div>
-          <h1>Faith Gates</h1>
-          <div class="muted">Stage Manager — calm under tech pressure, detail-oriented paperwork, experienced in musicals, opera, and educational touring.</div>
 
-          <div class="btn-row">
-            <a class="btn btn-primary" href="#resume">View Resume</a>
-            <a class="btn btn-ghost" href="#portfolio">Portfolio</a>
-          </div>
-        </div>
+    <!-- ABOUT ME -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a professional stage manager with experience in musical theatre, opera, and touring productions. 
+        I specialize in running efficient rehearsals and clear backstage communication. My work focuses on 
+        organization, leadership, and paperwork management. I am passionate about collaboration, supporting 
+        performers, and maintaining a positive, consistent rehearsal room.
+      </p>
+    </section>
 
-        <div>
-          <!-- Replace with your headshot: assets/images/headshot.jpg -->
-          <img class="headshot" src="assets/images/headshot-placeholder.jpg" alt="Headshot of Faith Gates">
-        </div>
-      </section>
 
-      <!-- Content grid -->
-      <div class="grid">
-        <!-- Left column -->
-        <div>
-          <!-- Resume -->
-          <section id="resume" class="panel">
-            <h2 style="margin-top:0">Resume & Paperwork</h2>
-            <p class="muted">Download or view selected paperwork below.</p>
-            <div class="pdf-list" style="margin-top:12px">
-              <!-- Place your PDFs in assets/pdfs/ and update filenames as needed -->
-              <a href="assets/pdfs/Faith-Gates-Resume.pdf" target="_blank" rel="noopener">Resume — Faith Gates (PDF)</a>
-              <a href="assets/pdfs/Sample-Production-Report.pdf" target="_blank" rel="noopener">Sample Production Report (PDF)</a>
-              <a href="assets/pdfs/Cue-Sheet-Sample.pdf" target="_blank" rel="noopener">Cue Sheet — Sample</a>
-            </div>
-          </section>
-
-          <!-- Portfolio -->
-          <section id="portfolio" class="panel" style="margin-top:16px">
-            <h3 style="margin-top:0">Portfolio</h3>
-            <p class="muted">Selected tech paperwork and production notes.</p>
-            <div style="margin-top:10px" class="pdf-list">
-              <a href="assets/pdfs/Tech-Rider.pdf" target="_blank" rel="noopener">Tech Rider — Production A</a>
-              <a href="assets/pdfs/Schedule-Sample.pdf" target="_blank" rel="noopener">Rehearsal Schedule — Sample</a>
-            </div>
-          </section>
-
-          <!-- About (longer) -->
-          <section id="about" class="panel about" style="margin-top:16px">
-            <h3 style="margin-top:0">About</h3>
-            <p>I’m Faith Gates, a professional stage manager with experience across musical theatre, opera, and touring productions. I prioritize clear communication, thorough paperwork, and calm leadership in rehearsals and tech. My credits include educational tours and regional productions; I’m based in City, State.</p>
-            <p class="muted">Tip: keep this bio updated with 1–2 current credits and a short statement of how you work.</p>
-          </section>
-        </div>
-
-        <!-- Right column / sidebar -->
-        <aside>
-          <!-- Contact card -->
-          <div class="panel contact">
-            <h3 style="margin-top:0">Contact</h3>
-            <p style="margin:6px 0;font-weight:700">Faith Gates</p>
-            <p class="muted" style="margin:0 0 10px 0">youremail@example.com<br/>(123) 456-7890</p>
-
-            <!-- Static contact form (will not send without backend) -->
-            <form onsubmit="event.preventDefault(); alert('This is a demo form. To receive messages, set up a form handler.');">
-              <input type="text" name="name" placeholder="Name*" required>
-              <input type="email" name="email" placeholder="Email*" required>
-              <textarea name="message" rows="4" placeholder="Message"></textarea>
-              <button type="submit">Send</button>
-            </form>
-
-            <p class="muted" style="margin-top:10px;font-size:13px">Socials: add LinkedIn or Instagram links below.</p>
-          </div>
-
-          <!-- Gallery -->
-          <div class="panel" style="margin-top:16px">
-            <h3 style="margin-top:0">Production Photo Gallery</h3>
-            <p class="muted">Click an image to view larger.</p>
-            <div class="gallery" id="galleryGrid" style="margin-top:10px">
-              <!-- Replace with your images in assets/images/ -->
-              <img src="assets/images/photo1-thumb.jpg" alt="Production photo 1" data-full="assets/images/photo1.jpg">
-              <img src="assets/images/photo2-thumb.jpg" alt="Production photo 2" data-full="assets/images/photo2.jpg">
-              <img src="assets/images/photo3-thumb.jpg" alt="Production photo 3" data-full="assets/images/photo3.jpg">
-              <img src="assets/images/photo4-thumb.jpg" alt="Production photo 4" data-full="assets/images/photo4.jpg">
-            </div>
-          </div>
-        </aside>
+    <!-- PHOTO CAROUSEL -->
+    <section class="carousel-container">
+      <h2>Production Photos</h2>
+      <div class="carousel">
+        <img src="assets/images/photo1.jpg" alt="Production Photo 1">
+        <img src="assets/images/photo2.jpg" alt="Production Photo 2">
+        <img src="assets/images/photo3.jpg" alt="Production Photo 3">
+        <img src="assets/images/photo4.jpg" alt="Production Photo 4">
+        <img src="assets/images/photo5.jpg" alt="Production Photo 5">
       </div>
+    </section>
 
-      <footer>
-        <div style="margin-top:18px">© <span id="year"></span> Faith Gates — Stage Manager</div>
-      </footer>
-    </main>
-  </div>
+    <footer>
+      © <span id="year"></span> Faith Gates — Stage Manager
+    </footer>
 
-  <!-- Image modal -->
-  <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-label="Image preview">
-    <img id="modalImg" src="" alt="">
   </div>
 
   <script>
-    // set year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // nav active state
-    document.querySelectorAll('nav a').forEach(a=>{
-      a.addEventListener('click', e=>{
-        document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-      });
-    });
-
-    // gallery modal open/close
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    document.getElementById('galleryGrid').addEventListener('click', (e)=>{
-      const img = e.target.closest('img');
-      if(!img) return;
-      const src = img.dataset.full || img.src;
-      modalImg.src = src;
-      modalImg.alt = img.alt || '';
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
-    });
-    modal.addEventListener('click', ()=> {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-      modalImg.src = '';
-    });
-    window.addEventListener('keydown', (e)=> {
-      if(e.key === 'Escape' && modal.classList.contains('open')) {
-        modal.classList.remove('open');
-        modalImg.src='';
-      }
-    });
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
