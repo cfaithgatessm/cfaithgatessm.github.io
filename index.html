@@ -1,240 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Faith Gates — Stage Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faith Gates | Stage Manager</title>
 
-  <style>
-    :root{
-      --burgundy: #7a0f17;
-      --panel: #ffffff;
-      --muted: #666;
-      --radius: 12px;
-      --shadow: 0 6px 20px rgba(0,0,0,0.08);
-      font-family: Inter, system-ui, sans-serif;
-    }
+    <style>
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            color: #222;
+            background-color: #ffffff;
+        }
 
-    body{
-      margin:0;
-      background:#f6f5f4;
-      color:#111;
-    }
+        /* ---------- NAVBAR ---------- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
 
-    /* NAVIGATION */
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 40px;
-      background:#fff;
-      box-shadow:var(--shadow);
-      position:sticky;
-      top:0;
-      z-index:50;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .logo{
-      width:55px;
-      height:55px;
-      border-radius:12px;
-      background:var(--panel);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-weight:700;
-      color:var(--burgundy);
-      box-shadow:var(--shadow);
-    }
-    nav a{
-      margin-left:20px;
-      text-decoration:none;
-      color:var(--muted);
-      font-size:17px;
-      font-weight:600;
-    }
-    nav a.active{color:var(--burgundy);}
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #6e0f19;
+            font-weight: bold;
+            font-size: 16px;
+        }
 
-    .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:20px;
-    }
+        /* ---------- HERO SECTION ---------- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            width: 100%;
+            background-image: url("YOUR-HERO-IMAGE.jpg"); /* Replace */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-    /* HERO */
-    .hero{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:70px 40px;
-      background:var(--burgundy);
-      color:white;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      margin-top:25px;
-    }
+        .hero-text {
+            background: rgba(0,0,0,0.35);
+            padding: 25px 40px;
+            border-radius: 8px;
+            color: white;
+        }
 
-    .hero h1{
-      font-size:60px;
-      margin:0;
-      letter-spacing:2px;
-    }
-    .hero h2{
-      font-size:28px;
-      margin-top:10px;
-      font-weight:300;
-    }
+        .hero-text h1 {
+            font-size: 64px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
 
-    .hero img{
-      width:360px;
-      border-radius:14px;
-      box-shadow:var(--shadow);
-      object-fit:cover;
-    }
+        .hero-text h2 {
+            margin-top: 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
 
-    /* ABOUT */
-    #about{
-      background:white;
-      margin-top:30px;
-      padding:35px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    #about h2{
-      font-size:32px;
-      margin-top:0;
-    }
-    #about p{
-      font-size:18px;
-      line-height:1.7;
-      max-width:900px;
-      color:var(--muted);
-    }
+        /* ---------- ABOUT SECTION ---------- */
+        .about {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
 
-    /* CAROUSEL */
-    .carousel-container{
-      margin-top:35px;
-      background:white;
-      padding:35px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
+        .about h2 {
+            text-align: center;
+            font-size: 36px;
+            color: #6e0f19;
+        }
 
-    .carousel-container h2{
-      margin-top:0;
-      font-size:30px;
-    }
+        .about p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-top: 20px;
+            text-align: center;
+        }
 
-    .carousel{
-      display:flex;
-      overflow-x:auto;
-      gap:20px;
-      scroll-behavior:smooth;
-      padding-bottom:10px;
-    }
-    .carousel img{
-      height:220px;
-      border-radius:10px;
-      flex-shrink:0;
-      object-fit:cover;
-      box-shadow:var(--shadow);
-    }
+        /* ---------- PHOTO CAROUSEL ---------- */
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+            margin: 80px auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
 
-    /* FOOTER */
-    footer{
-      text-align:center;
-      margin:40px 0 20px;
-      color:var(--muted);
-      font-size:14px;
-    }
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
 
-    @media(max-width:900px){
-      .hero{
-        flex-direction:column;
-        text-align:center;
-      }
-      .hero img{
-        margin-top:25px;
-        width:80%;
-        max-width:330px;
-      }
-      .hero h1{font-size:46px;}
-    }
-  </style>
+        .carousel-slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(110, 15, 25, 0.7);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 4px;
+        }
+
+        #prevBtn {
+            left: 15px;
+        }
+
+        #nextBtn {
+            right: 15px;
+        }
+
+        /* ---------- CONTACT SECTION ---------- */
+        .contact {
+            background-color: #6e0f19;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 32px;
+        }
+
+        .contact a {
+            color: #ffdfe4;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #450a10;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
-  <header>
-    <div class="brand">
-      <div class="logo">FG</div>
-      <div>
-        <strong>Faith Gates</strong><br>
-        <span class="muted" style="font-size:13px;color:gray;">Stage Manager</span>
-      </div>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo"><strong>Faith Gates</strong></div>
+    <div>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="resume.html">Resume</a>
+        <a href="portfolio.html">Portfolio</a>
     </div>
+</nav>
 
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="resume.html">Resume</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="gallery.html">Gallery</a>
-    </nav>
-  </header>
-
-
-  <div class="wrap">
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
         <h1>FAITH GATES</h1>
         <h2>Stage Manager</h2>
-      </div>
+    </div>
+</section>
 
-      <!-- Replace with your own image -->
-      <img src="assets/images/headshot.jpg" alt="Faith Gates Headshot">
-    </section>
+<!-- ABOUT -->
+<section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+        Lorem ipsum placeholder — replace with your personal introduction.  
+        This is where you can talk about your stage management experience,  
+        communication style, theatre background, and your passion for  
+        organization and collaborative storytelling.
+    </p>
+</section>
 
+<!-- PHOTO CAROUSEL -->
+<section id="gallery">
+    <div class="carousel-container">
+        <button id="prevBtn" class="carousel-btn">&#10094;</button>
 
-    <!-- ABOUT ME -->
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I am a professional stage manager with experience in musical theatre, opera, and touring productions. 
-        I specialize in running efficient rehearsals and clear backstage communication. My work focuses on 
-        organization, leadership, and paperwork management. I am passionate about collaboration, supporting 
-        performers, and maintaining a positive, consistent rehearsal room.
-      </p>
-    </section>
+        <div class="carousel-slide" id="carouselSlide">
+            <img src="IMAGE1.jpg" alt="Gallery Image"> <!-- Replace -->
+            <img src="IMAGE2.jpg" alt="Gallery Image"> <!-- Replace -->
+            <img src="IMAGE3.jpg" alt="Gallery Image"> <!-- Replace -->
+        </div>
 
+        <button id="nextBtn" class="carousel-btn">&#10095;</button>
+    </div>
+</section>
 
-    <!-- PHOTO CAROUSEL -->
-    <section class="carousel-container">
-      <h2>Production Photos</h2>
-      <div class="carousel">
-        <img src="assets/images/photo1.jpg" alt="Production Photo 1">
-        <img src="assets/images/photo2.jpg" alt="Production Photo 2">
-        <img src="assets/images/photo3.jpg" alt="Production Photo 3">
-        <img src="assets/images/photo4.jpg" alt="Production Photo 4">
-        <img src="assets/images/photo5.jpg" alt="Production Photo 5">
-      </div>
-    </section>
+<!-- CONTACT SECTION -->
+<section class="contact">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:your-email@gmail.com">your-email@gmail.com</a></p>
+</section>
 
-    <footer>
-      © <span id="year"></span> Faith Gates — Stage Manager
-    </footer>
+<footer>
+    © 2025 Faith Gates — All Rights Reserved.
+</footer>
 
-  </div>
+<!-- CAROUSEL SCRIPT -->
+<script>
+    const slide = document.getElementById('carouselSlide');
+    const images = slide.querySelectorAll('img');
+    let index = 0;
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    function updateCarousel() {
+        slide.style.transform = 'translateX(' + (-index * 100) + '%)';
+    }
+
+    document.getElementById('nextBtn').onclick = function() {
+        index = (index + 1) % images.length;
+        updateCarousel();
+    };
+
+    document.getElementById('prevBtn').onclick = function() {
+        index = (index - 1 + images.length) % images.length;
+        updateCarousel();
+    };
+</script>
 
 </body>
 </html>
